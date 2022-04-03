@@ -1,0 +1,12 @@
+version: 2.1
+orbs: 
+  docker: circleci/docker@2.0.3
+workflows:
+  build-and-publish-docker-image:
+    jobs:
+      - docker/publish:
+          dockerfile: ./cmd/clusterctl/Dockerfile
+          image: $DOCKERHUB_USERNAME/capi
+          tag: latest
+          docker-password: DOCKERHUB_PASSWORD
+          docker-username: DOCKERHUB_USERNAME
